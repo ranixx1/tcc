@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:c="http://cardapio.org"
+        targetNamespace="http://cardapio.org" elementFormDefault="qualified">
+
+    <element name="nome" type="string"/>
+    <element name="descricao" type="string"/>
+    <element name="ingrediente" type="string"/>
+    <element name="tempoPreparo" type="string"/>
+    <element name="calorias" type="integer"/>
+
+    <element name="preco">
+        <simpleType>
+            <restriction base="decimal">
+                <fractionDigits value="2"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <element name="ingredientes">
+        <complexType>
+            <sequence>
+                <element ref="c:ingrediente" minOccurs="1" maxOccurs="unbounded"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+
+    <element name="cardapio">
+        <complexType>
+            <sequence>
+                <element name="prato" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element ref="c:nome"></element>
+                            <element ref="c:descricao"></element>
+                            <element ref="c:ingredientes"></element>
+                            <element ref="c:preco"></element>
+                            <element ref="c:calorias"></element>
+                            <element ref="c:tempoPreparo"></element>
+                        </sequence>
+                        <attribute name="id" type="positiveInteger" use="required"></attribute>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+
+</schema>
